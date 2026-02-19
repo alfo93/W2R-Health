@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">IEEE NetRobiCS 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@300;400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #003366; --blue: #0057a8; --light-blue: #e8f0f8;
+      --gold: #c9a227; --dark: #1a1a2e; --text: #333; --muted: #666;
+      --border: #d0d9e8; --white: #fff; --red: #c0392b;
+    }
+    body { font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: #f5f7fa; font-size: 15px; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+    .top-bar { background: var(--navy); color: rgba(255,255,255,0.85); font-size: 12px; padding: 6px 0; text-align: center; letter-spacing: 0.05em; flex-shrink: 0; }
+    header { background: var(--white); border-bottom: 3px solid var(--blue); box-shadow: 0 2px 12px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; flex-shrink: 0; }
+    .header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 68px; }
+    .site-title { font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 19px; color: var(--navy); text-decoration: none; white-space: nowrap; cursor: pointer; }
+    nav { display: flex; gap: 0; flex-wrap: wrap; }
+    nav a { color: var(--navy); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 8px 13px; transition: background 0.18s, color 0.18s; border-radius: 4px; cursor: pointer; }
+    nav a:hover { background: var(--light-blue); }
+    nav a.active { background: var(--blue); color: white; }
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, #0a4880 60%, var(--blue) 100%); color: white; padding: 76px 24px 64px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events: none; }
+    .hero-badge { display: inline-block; background: var(--gold); color: var(--dark); font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 2px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+    .hero h1 { font-family: 'Source Serif 4', serif; font-size: clamp(26px, 5vw, 46px); font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .hero .subtitle { font-size: clamp(14px, 2vw, 17px); font-weight: 300; opacity: 0.88; max-width: 640px; margin: 0 auto 28px; }
+    .cta-btn { display: inline-block; background: white; color: var(--navy); font-size: 14px; font-weight: 600; padding: 12px 34px; border-radius: 4px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: transform 0.2s, box-shadow 0.2s; letter-spacing: 0.02em; margin-top: 10px; cursor: pointer; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+    .page-hero { background: var(--navy); color: white; padding: 36px 24px 30px; }
+    .page-hero-inner { max-width: 1100px; margin: 0 auto; }
+    .breadcrumb { font-size: 12px; opacity: 0.7; margin-bottom: 8px; letter-spacing: 0.04em; }
+    .breadcrumb span { cursor: pointer; }
+    .breadcrumb span:hover { text-decoration: underline; }
+    .page-hero h1 { font-family: 'Source Serif 4', serif; font-size: clamp(22px, 4vw, 34px); font-weight: 700; }
+    .page-wrap { flex: 1; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 60px; display: grid; grid-template-columns: 1fr 290px; gap: 40px; align-items: start; }
+    .content h2 { font-family: 'Source Serif 4', serif; font-size: 12px; color: var(--blue); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; margin-bottom: 6px; }
+    .content h3 { font-family: 'Source Serif 4', serif; font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.3; }
+    .content h4 { font-family: 'Source Serif 4', serif; font-size: 17px; font-weight: 600; color: var(--navy); margin: 28px 0 8px; }
+    .content p { color: #444; margin-bottom: 16px; line-height: 1.78; }
+    .content strong { color: var(--navy); }
+    .content ul { list-style: none; margin: 10px 0 20px; }
+    .content ul li { padding: 4px 0 4px 22px; position: relative; color: #444; line-height: 1.6; }
+    .content ul li::before { content: '→'; position: absolute; left: 0; color: var(--blue); font-size: 12px; top: 5px; }
+    .content ul li a, .content a { color: var(--blue); text-decoration: none; }
+    .content ul li a:hover, .content a:hover { text-decoration: underline; }
+    .submit-box { text-align: center; padding: 28px; background: var(--light-blue); border: 1px solid var(--border); border-radius: 6px; margin: 22px 0; }
+    .submit-box a { display: inline-block; background: var(--blue); color: white; padding: 11px 30px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background 0.2s; }
+    .submit-box a:hover { background: var(--navy); }
+    .tbd-block { background: var(--light-blue); border: 1px dashed var(--border); border-radius: 6px; padding: 48px 32px; text-align: center; color: var(--muted); font-size: 16px; margin: 16px 0; }
+    .tbd-block strong { display: block; font-size: 22px; color: var(--navy); margin-bottom: 8px; }
+    .committee-section { margin-bottom: 28px; }
+    .committee-section h4 { font-family: 'Source Serif 4', serif; font-size: 17px; color: var(--navy); font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid var(--border); margin-bottom: 12px; }
+    .member-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+    .member-list li { padding: 5px 0 5px 18px; position: relative; color: #444; font-size: 14px; }
+    .member-list li::before { content: '▸'; position: absolute; left: 0; color: var(--blue); font-size: 11px; top: 7px; }
+    .chair-list { list-style: none; }
+    .chair-list li { padding: 8px 0 8px 18px; position: relative; color: #333; border-bottom: 1px solid var(--border); }
+    .chair-list li:last-child { border-bottom: none; }
+    .chair-list li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); top: 10px; }
+    hr.section-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+    .feature-pills { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+    .pill { background: var(--navy); color: white; font-size: 12px; font-weight: 500; padding: 5px 13px; border-radius: 20px; letter-spacing: 0.02em; }
+    aside { display: flex; flex-direction: column; gap: 20px; }
+    .card { background: white; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .card-header { background: var(--navy); color: white; padding: 11px 18px; font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; }
+    .card-body { padding: 16px 18px; }
+    .date-row { display: flex; flex-direction: column; padding: 9px 0; border-bottom: 1px solid var(--border); gap: 1px; }
+    .date-row:last-child { border-bottom: none; }
+    .date-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+    .date-value { font-size: 13.5px; font-weight: 600; color: var(--navy); }
+    .date-value.extended { color: var(--red); }
+    .infocom-block { text-align: center; padding: 14px 18px; }
+    .infocom-block a { color: var(--blue); font-weight: 600; text-decoration: none; font-size: 14px; display: block; }
+    .infocom-block a:hover { text-decoration: underline; }
+    .infocom-block .location { font-size: 12px; color: var(--muted); margin-top: 5px; }
+    .tag { display: inline-block; background: var(--light-blue); color: var(--blue); font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+    .sponsor-block { text-align: center; padding: 16px 18px; }
+    .sponsor-block img { max-width: 100%; height: 44px; object-fit: contain; margin-bottom: 4px; display: block; margin-left: auto; margin-right: auto; }
+    .sponsor-block a { display: block; font-size: 13px; color: var(--blue); text-decoration: none; font-weight: 500; margin-bottom: 14px; }
+    .edas-link-block { text-align: center; padding: 16px 18px; }
+    .edas-link-block a { color: var(--blue); font-weight: 600; text-decoration: none; font-size: 15px; }
+    .edas-link-block a:hover { text-decoration: underline; }
+    footer { background: var(--dark); color: #888; text-align: center; padding: 22px; font-size: 12.5px; flex-shrink: 0; }
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(26,26,46,0.97); color: white; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 13px; z-index: 9999; flex-wrap: wrap; backdrop-filter: blur(6px); }
+    .cookie-banner p { color: #ccc; }
+    .cookie-btn { background: var(--blue); color: white; border: none; padding: 8px 22px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
+    .cookie-btn:hover { background: var(--navy); }
+    @media (max-width: 800px) { main { grid-template-columns: 1fr; } .member-list { grid-template-columns: 1fr; } .header-inner { flex-direction: column; padding: 12px 16px; gap: 6px; } nav { justify-content: center; } }
+  </style>
+</head>
+<body>
+
+<div class="top-bar" id="top-bar-text"></div>
+
+<header>
+  <div class="header-inner">
+    <span class="site-title" onclick="navigate('home')" id="header-title"></span>
+    <nav id="main-nav"></nav>
+  </div>
+</header>
+
+<div id="app"></div>
+
+<footer>
+  <p id="footer-text"></p>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</p>
+  <button class="cookie-btn" onclick="document.getElementById('cookieBanner').style.display='none'">Ok</button>
+</div>
+
+<script>
+// =============================================================================
+//  ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗
+// ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝
+// ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+// ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+// ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+//  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
+//
+// Edit the CONFIG object below to update all content across the site.
+// Do NOT edit anything below the "END OF CONFIG" line unless you know
+// what you are doing — that's the rendering engine.
+// =============================================================================
+
+const CONFIG = {
+
+  // ── WORKSHOP INFO ──────────────────────────────────────────────────────────
+  workshop: {
+    shortName:   "IEEE W2R-HEALTH 2026",           // Appears in header, hero, browser tab
+    edition:     "Nth Edition · 2026",           // Gold badge on hero
+    fullName:    "The Nth International Workshop on intelligent environments for personalized healthcare",
+    subtitle:    "Topic and Subtopic",
+    description: [
+      // Each string = one paragraph on the home page
+      "<strong>The Nth International Workshop on intelligent environments for personalized healthcare (W2R-HEALTH 2026)</strong> is organized in conjunction with <strong>IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks 2026 (IEEE WOWMOM 2026)</strong>, a top conference on networking in the research community, which will be held in Bologna, on June 16-19, 2026.",
+      "The aim of W2R-HEALTH 2026 is to bring together practitioners and researchers from both academia and industry in order to have a forum for discussion and technical presentations on the broad area of <strong>intelligent environments for personalized healthcare</strong>. We expect the workshop to be a possible ground of cross-fertilization between academia, industry, and standardization groups, and to provide an original contribution to the state-of-art of research.",
+      "We also consider the workshop as a perfect arena for participation of young PhDs and Researchers who will receive provocative ideas, visions and guidelines on new potential directions of research on methodologies, techniques, algorithms and multidisciplinary aspects. The workshop has reached its Nth edition.",
+      "During these years, the NetRobiCS workshop has been organized in conjunction with many prestigious conferences, always achieving satisfactory results both in terms of submissions and of attendees. Link to past editions:"
+    ],
+    pastEditions: [
+      // { label, url }
+      { label: "prova", url: "prova" },
+    ],
+  },
+
+  // ── MAIN CONFERENCE ────────────────────────────────────────────────────────
+  conference: {
+    name:     "IEEE WOWMOM 2026",
+    url:      "https://www.cs.unibo.it/wowmom2026/",
+    dates:    "June 16-19, 2026",
+    location: "Bologna, Italy",
+  },
+
+  // ── IMPORTANT DATES ────────────────────────────────────────────────────────
+  dates: [
+    // { label, value, highlight: true/false }
+    // highlight:true → shown in red (e.g. extended deadlines)
+    { label: "Submission Deadline (extended)", value: "March 22, 2026",  highlight: true  },
+    { label: "Notification",                   value: "April 12, 2026",  highlight: false },
+    { label: "Camera Ready",                   value: "April 26, 2026", highlight: false },
+    { label: "Presentation",                   value: "June X, 2026",      highlight: false },
+  ],
+
+  // ── SUBMISSION LINKS ───────────────────────────────────────────────────────
+  submission: {
+    edas:        "https://edas.info/N34642",   // Main submission link (hero CTA + submit page)
+    edasSidebar: "https://edas.info/N33129",   // Sidebar "EDAS link"
+    maxPages:    "6",                          // Max pages (used in text)
+  },
+
+  // ── TECHNICAL SPONSORS ─────────────────────────────────────────────────────
+  sponsors: [
+    // { name, url, logoUrl }
+    {
+      name:    "University of Palermo",
+      url:     "https://www.unipa.it",
+      logoUrl: "immagini/logo-unipa.png",
+    },
+    {
+      name:    "Alma Mater Studiorum",
+      url:     "https://www.unibo.it/en",
+      logoUrl: "immagini/logo-unibo.png",
+    },
+    {
+      name:    "Laboratory for Applied Ontology, National Research Council of Italy",
+      url:     "https://www.cnr.it",
+      logoUrl: "immagini/logo-lao.png",
+    },
+    {
+      name:    "(Tufts Medical Center, University, Boston, USA)",
+      url:     "https://medicine.tufts.edu",
+      logoUrl: "immagini/logo-tufts.png",
+    },
+  ],
+
+  // ── CALL FOR PAPERS ────────────────────────────────────────────────────────
+  cfp: {
+    intro: [
+      // Each string = one paragraph
+      "The W2R-HEALTH workshop focuses on the integration of wearable IoT technologies and robotic systems to create intelligent healthcare spaces capable of supporting personalized care, remote health monitoring, and rehabilitation. The scientific motivation of the workshop builds on the rapid growth of research in Internet of Things (IoT) and humanoid robotics, and on the increasing opportunity to integrate these technologies to move toward the long-sought goal of personalized healthcare. The W2R-HEALTH workshop aims to advance the discussion on smart health solutions for personalized healthcare by bridging engineering and life sciences. To this end, the workshop addresses critical topics spanning sensing technologies for remote monitoring, smart healthcare applications based on wearable IoT and mobile systems, next-generation robotic platforms for patient interaction, edge computing for privacy-preserving health data processing, AI techniques for personalized context recognition and diagnosis, and open challenges related to human–robot acceptance, security, and ethics. The workshop aims to foster interdisciplinary discussion on how wearable and robotic technologies can jointly shape the next generation of personalized, intelligent healthcare environments,encouraging interaction among participants, stimulating collaboration, and laying the groundwork for future initiatives such as joint research projects."
+    ],
+    topics: [
+      "...",
+    ],
+    features: [
+      "Best Paper Award (sponsored by XXX)",
+      "Special Issue Invitation for Best Papers",
+    ],
+  },
+
+  // ── COMMITTEES ─────────────────────────────────────────────────────────────
+  committees: {
+    generalChairs: [
+      // { name, affiliation }
+      { name: "Enrico Natalizio",   affiliation: "Technology Innovation Institute (TII), UAE" },
+      { name: "Yannis Paschalidis", affiliation: "Boston University, USA" },
+    ],
+    technicalChairs: [
+      { name: "Christelle Caillouet", affiliation: "Université Côte d'Azur, France" },
+      { name: "Marco Di Felice",      affiliation: "University of Bologna, Italy" },
+      { name: "Jennifer Simonjan",    affiliation: "Technology Innovation Institute (TII), UAE" },
+    ],
+    webChairs: [
+      { name: "Alfonso Esposito", affiliation: "University of Bologna, Italy" },
+    ],
+    programCommittee: [
+      // { name, affiliation }
+      { name: "Fatemeh Afghah",          affiliation: "Clemson University" },
+      { name: "Sabur Baidya",            affiliation: "University of Louisville" },
+      { name: "Christian Bettstetter",   affiliation: "University of Klagenfurt" },
+      { name: "Luiz Bittencourt",        affiliation: "University of Campinas" },
+      { name: "Carlos Calafate",         affiliation: "Univ. Politécnica de Valencia" },
+      { name: "Dave Cavalcanti",         affiliation: "Intel Corporation" },
+      { name: "Udhaya Kumar Dayalan",    affiliation: "Trane Technologies" },
+      { name: "Zhangyu Guan",            affiliation: "University at Buffalo" },
+      { name: "Karin Hummel",            affiliation: "Johannes Kepler University Linz" },
+      { name: "Carlos Alberto Kamienski",affiliation: "Universidade Federal do ABC" },
+      { name: "João Kleinschmidt",       affiliation: "Universidade Federal Do ABC" },
+      { name: "Debashisha Mishra",       affiliation: "TII" },
+      { name: "Yasamin Moghbelan",       affiliation: "University of Bologna" },
+      { name: "Subhramoy Mohanti",       affiliation: "InterDigital Communications" },
+      { name: "Sara Pizzi",              affiliation: "Univ. Mediterranea Reggio Calabria" },
+      { name: "Dario Pompili",           affiliation: "Rutgers University" },
+      { name: "Prasanna Raut",           affiliation: "Technology Innovation Institute" },
+      { name: "Micha Sende",             affiliation: "Lakeside Labs GmbH" },
+      { name: "Angelo Trotta",           affiliation: "University of Bologna" },
+      { name: "Fabrice Valois",          affiliation: "Univ Lyon, INSA Lyon, Inria, CITI" },
+      { name: "Evgenii Vinogradov",      affiliation: "TII" },
+      { name: "Evsen Yanmaz",            affiliation: "Ozyegin University" },
+      { name: "Ivan Zyrianoff",          affiliation: "University of Bologna" },
+    ],
+  },
+
+  // ── PROGRAM & KEYNOTE (set to null to show "TBD", or fill with HTML string)
+  program: null,   // e.g. "<p>Session 1: ...</p>"
+  keynote: null,   // e.g. "<p><strong>Prof. John Doe</strong> — MIT<br>Title: ..."
+
+};
+
+// =============================================================================
+//  END OF CONFIG — rendering engine below. Edit at your own risk.
+// =============================================================================
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+const h = (tag, cls, inner) => `<${tag}${cls ? ` class="${cls}"` : ''}>${inner}</${tag}>`;
+
+function memberItem(person, large = false) {
+  const aff = large
+    ? `<em style="color:var(--muted);font-size:13px;">(${person.affiliation})</em>`
+    : `<em style="color:var(--muted);font-size:12px;">(${person.affiliation})</em>`;
+  return `<li>${person.name} ${aff}</li>`;
+}
+
+function sidebar() {
+  const { conference, dates, submission, sponsors } = CONFIG;
+  const dateRows = dates.map(d => `
+    <div class="date-row">
+      <span class="date-label">${d.label}</span>
+      <span class="date-value${d.highlight ? ' extended' : ''}">${d.value}</span>
+    </div>`).join('');
+
+  const sponsorItems = sponsors.map(s => `
+    <img src="${s.logoUrl}" alt="${s.name}" onerror="this.style.display='none'">
+    <a href="${s.url}" target="_blank">${s.name}</a>`).join('');
+
+  return `
+  <aside>
+    <div class="card">
+      <div class="card-header">In conjunction with</div>
+      <div class="infocom-block">
+        <span class="tag">${conference.name}</span>
+        <a href="${conference.url}" target="_blank">${conference.name}</a>
+        <div class="location">${conference.dates} · ${conference.location}</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">Important Dates</div>
+      <div class="card-body">${dateRows}</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Submission</div>
+      <div class="edas-link-block">
+        <a href="${submission.edasSidebar}" target="_blank">EDAS link →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">Technical Sponsors</div>
+      <div class="sponsor-block">${sponsorItems}</div>
+    </div>
+  </aside>`;
+}
+
+// ── PAGES ────────────────────────────────────────────────────────────────────
+const pages = {
+
+  home: () => {
+    const { workshop, submission } = CONFIG;
+    const paras = workshop.description.map(p => `<p>${p}</p>`).join('');
+    const past  = workshop.pastEditions.map(e =>
+      `<li><a href="${e.url}" target="_blank">${e.label}</a></li>`).join('');
+    return `
+    <div class="page-wrap">
+      <div class="hero">
+        <div class="hero-badge">${workshop.edition}</div>
+        <h1>${workshop.shortName}</h1>
+        <p class="subtitle">${workshop.fullName}</p>
+        <a href="${submission.edas}" target="_blank" class="cta-btn">Submit a Paper</a>
+      </div>
+      <main>
+        <article class="content">
+          <h2>About the Workshop</h2>
+          <h3>${workshop.shortName}</h3>
+          <h4>${workshop.subtitle}</h4>
+          ${paras}
+          <div class="submit-box">
+            <a href="${submission.edas}" target="_blank">Submit a paper</a>
+          </div>
+          <ul>${past}</ul>
+        </article>
+        ${sidebar()}
+      </main>
+    </div>`;
+  },
+
+  program: () => {
+    const content = CONFIG.program
+      ? CONFIG.program
+      : `<div class="tbd-block"><strong>To Be Announced</strong>The workshop program will be published closer to the event date.</div>
+         <p>The workshop will take place on <strong>${CONFIG.conference.dates}</strong> in ${CONFIG.conference.location}.</p>`;
+    return `
+    <div class="page-wrap">
+      <div class="page-hero"><div class="page-hero-inner">
+        <div class="breadcrumb"><span onclick="navigate('home')">Home</span> › Program</div>
+        <h1>Program</h1>
+      </div></div>
+      <main>
+        <article class="content">
+          <h2>Workshop Program</h2>
+          <h3>Program</h3>
+          ${content}
+        </article>
+        ${sidebar()}
+      </main>
+    </div>`;
+  },
+
+  keynote: () => {
+    const content = CONFIG.keynote
+      ? CONFIG.keynote
+      : `<div class="tbd-block"><strong>To Be Announced</strong>Keynote speaker information will be published soon.</div>
+         <p>The keynote lecture will be delivered on <strong>${CONFIG.conference.dates}</strong> in ${CONFIG.conference.location}.</p>`;
+    return `
+    <div class="page-wrap">
+      <div class="page-hero"><div class="page-hero-inner">
+        <div class="breadcrumb"><span onclick="navigate('home')">Home</span> › Keynote</div>
+        <h1>Keynote</h1>
+      </div></div>
+      <main>
+        <article class="content">
+          <h2>Keynote Speaker</h2>
+          <h3>Keynote</h3>
+          ${content}
+        </article>
+        ${sidebar()}
+      </main>
+    </div>`;
+  },
+
+  cfp: () => {
+    const { cfp, submission, conference } = CONFIG;
+    const paras  = cfp.intro.map(p => `<p>${p}</p>`).join('');
+    const topics = cfp.topics.map(t => `<li>${t}</li>`).join('');
+    const feats  = cfp.features.map(f => `<span class="pill">${f}</span>`).join('');
+    return `
+    <div class="page-wrap">
+      <div class="page-hero"><div class="page-hero-inner">
+        <div class="breadcrumb"><span onclick="navigate('home')">Home</span> › Call for Papers</div>
+        <h1>Call for Papers</h1>
+      </div></div>
+      <main>
+        <article class="content">
+          <h2>Call for Papers</h2>
+          <h3>Call for Papers</h3>
+          ${paras}
+          <ul>${topics}</ul>
+          <h4>Features</h4>
+          <div class="feature-pills">${feats}</div>
+          <h4>Submission Rules</h4>
+          <p>Papers must be formatted in the standard IEEE two-column format that is used by the ${conference.name} main conference and must not exceed <strong>${submission.maxPages} pages in length</strong> (including references). All submitted papers will go through a peer review process, and all accepted papers which are presented by one of the authors at the workshop will be published in the <strong>${conference.name} proceedings and IEEE Xplore</strong>.</p>
+          <div class="submit-box"><a href="${submission.edas}" target="_blank">Submit via EDAS</a></div>
+        </article>
+        ${sidebar()}
+      </main>
+    </div>`;
+  },
+
+  committees: () => {
+    const { committees } = CONFIG;
+    const chairSection = (title, list) => `
+      <div class="committee-section">
+        <h4>${title}</h4>
+        <ul class="chair-list">${list.map(p => memberItem(p, true)).join('')}</ul>
+      </div>
+      <hr class="section-divider">`;
+    const pcItems = committees.programCommittee.map(p => memberItem(p, false)).join('');
+    return `
+    <div class="page-wrap">
+      <div class="page-hero"><div class="page-hero-inner">
+        <div class="breadcrumb"><span onclick="navigate('home')">Home</span> › Committees</div>
+        <h1>Committees</h1>
+      </div></div>
+      <main>
+        <article class="content">
+          <h2>Organization</h2>
+          <h3>Committees</h3>
+          ${chairSection('General Chairs', committees.generalChairs)}
+          ${chairSection('Technical Program Chairs', committees.technicalChairs)}
+          ${chairSection('Web and Publicity Chairs', committees.webChairs)}
+          <div class="committee-section">
+            <h4>Program Committee Members</h4>
+            <ul class="member-list">${pcItems}</ul>
+          </div>
+        </article>
+        ${sidebar()}
+      </main>
+    </div>`;
+  },
+
+  submit: () => {
+    const { submission, conference } = CONFIG;
+    return `
+    <div class="page-wrap">
+      <div class="page-hero"><div class="page-hero-inner">
+        <div class="breadcrumb"><span onclick="navigate('home')">Home</span> › Submit a paper</div>
+        <h1>Submit a paper</h1>
+      </div></div>
+      <main>
+        <article class="content">
+          <h2>Paper Submission</h2>
+          <h3>Submit a paper</h3>
+          <p>Papers must be formatted in the standard <strong>IEEE two-column format</strong> used by the ${conference.name} main conference and must not exceed <strong>SIX pages in length</strong> (including references). All submitted papers will go through a peer review process, and all accepted papers which are presented by one of the authors at the workshop will be published in the <strong>${conference.name} proceedings and IEEE Xplore</strong>.</p>
+          <div class="submit-box"><a href="${submission.edas}" target="_blank">Submit a paper via EDAS</a></div>
+          <h4>Formatting Guidelines</h4>
+          <ul>
+            <li>Use the standard IEEE two-column conference format</li>
+            <li>Maximum ${submission.maxPages} pages including references</li>
+            <li>Original, unpublished work only</li>
+            <li>All accepted &amp; presented papers will appear in IEEE Xplore</li>
+          </ul>
+          <h4>Review Process</h4>
+          <p>All submitted papers will go through a rigorous peer review process by the Technical Program Committee. Accepted papers presented by one of the authors at the workshop will be published in the ${conference.name} workshop proceedings and indexed on IEEE Xplore.</p>
+        </article>
+        ${sidebar()}
+      </main>
+    </div>`;
+  },
+};
+
+// ── ROUTER ───────────────────────────────────────────────────────────────────
+function navigate(page) {
+  if (!pages[page]) return;
+
+  document.querySelectorAll('#main-nav a').forEach(a =>
+    a.classList.toggle('active', a.dataset.page === page));
+
+  document.getElementById('app').innerHTML = pages[page]();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────────────────
+(function boot() {
+  const { workshop, conference } = CONFIG;
+
+  document.getElementById('page-title').textContent = workshop.shortName;
+  document.getElementById('header-title').textContent = workshop.shortName;
+  document.getElementById('top-bar-text').textContent =
+    `${workshop.shortName} — In conjunction with ${conference.name}, ${conference.location} · ${conference.dates}`;
+  document.getElementById('footer-text').textContent =
+    `Copyright © All rights reserved — ${workshop.shortName}`;
+
+  const navDefs = [
+    { page: 'home',       label: workshop.shortName },
+    { page: 'program',    label: 'Program' },
+    { page: 'keynote',    label: 'Keynote' },
+    { page: 'cfp',        label: 'Call for Papers' },
+    { page: 'committees', label: 'Committees' },
+    { page: 'submit',     label: 'Submit a paper' },
+  ];
+
+  document.getElementById('main-nav').innerHTML = navDefs.map(n =>
+    `<a onclick="navigate('${n.page}')" data-page="${n.page}">${n.label}</a>`
+  ).join('');
+
+  navigate('home');
+})();
+</script>
+
+</body>
+</html>
