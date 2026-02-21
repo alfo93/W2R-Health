@@ -206,7 +206,8 @@ const CONFIG = {
   cfp: {
     intro: [
       // Each string = one paragraph
-      "The W2R-HEALTH workshop focuses on the integration of wearable IoT technologies and robotic systems to create intelligent healthcare spaces capable of supporting personalized care, remote health monitoring, and rehabilitation. The scientific motivation of the workshop builds on the rapid growth of research in Internet of Things (IoT) and humanoid robotics, and on the increasing opportunity to integrate these technologies to move toward the long-sought goal of personalized healthcare. The W2R-HEALTH workshop aims to advance the discussion on smart health solutions for personalized healthcare by bridging engineering and life sciences. To this end, the workshop addresses critical topics spanning sensing technologies for remote monitoring, smart healthcare applications based on wearable IoT and mobile systems, next-generation robotic platforms for patient interaction, edge computing for privacy-preserving health data processing, AI techniques for personalized context recognition and diagnosis, and open challenges related to human–robot acceptance, security, and ethics. The workshop aims to foster interdisciplinary discussion on how wearable and robotic technologies can jointly shape the next generation of personalized, intelligent healthcare environments,encouraging interaction among participants, stimulating collaboration, and laying the groundwork for future initiatives such as joint research projects.",
+      //"The W2R-HEALTH workshop focuses on the integration of wearable IoT technologies and robotic systems to create intelligent healthcare spaces capable of supporting personalized care, remote health monitoring, and rehabilitation. The scientific motivation of the workshop builds on the rapid growth of research in Internet of Things (IoT) and humanoid robotics, and on the increasing opportunity to integrate these technologies to move toward the long-sought goal of personalized healthcare. The W2R-HEALTH workshop aims to advance the discussion on smart health solutions for personalized healthcare by bridging engineering and life sciences. To this end, the workshop addresses critical topics spanning sensing technologies for remote monitoring, smart healthcare applications based on wearable IoT and mobile systems, next-generation robotic platforms for patient interaction, edge computing for privacy-preserving health data processing, AI techniques for personalized context recognition and diagnosis, and open challenges related to human–robot acceptance, security, and ethics. The workshop aims to foster interdisciplinary discussion on how wearable and robotic technologies can jointly shape the next generation of personalized, intelligent healthcare environments,encouraging interaction among participants, stimulating collaboration, and laying the groundwork for future initiatives such as joint research projects.",
+      "The W2R-HEALTH workshop aims to foster interdisciplinary research on sensing, computation, and robotic technologies to enable personalized healthcare solutions. To this end, the workshop addresses critical topics spanning sensing technologies for remote monitoring, smart healthcare applications based on wearable IoT and mobile systems, next-generation robotic platforms for patient interaction, edge computing for privacy-preserving health data processing, AI techniques for personalized context recognition and diagnosis, and open challenges related to human–robot acceptance, security, and ethics.",
       "The list of topics includes—but is not limited to—the following:",
     ],
     topics: [
@@ -227,7 +228,7 @@ const CONFIG = {
       "Clinical validation, user acceptance, and real-world deployment of smart healthcare systems",
     ],
     features: [
-      "Best Paper Award (sponsored by XXX)",
+      "Best Paper Award",
       "Special Issue Invitation for Best Papers",
     ],
   },
@@ -269,7 +270,7 @@ const CONFIG = {
   program: null,   // e.g. "<p>Session 1: ...</p>"
   keynote: `
   <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
-    <img src="./immagini/guido_rocco_speaker.png" alt="Guido Rocco" style="width:160px; height:160px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+    <img src="./immagini/guido_rocco_speaker3.jpeg" alt="Guido Rocco" style="width:160px; height:160px; object-fit:cover; border-radius:4px; flex-shrink:0;">
     <div>
       <h3 style="margin:0 0 4px;">Guido Rocco</h3>
       <p style="margin:0 0 12px; color:var(--blue); font-weight:600;">RIV Capital, Dubai</p>
@@ -413,6 +414,8 @@ const pages = {
     const { cfp, submission, conference } = CONFIG;
     const paras  = cfp.intro.map(p => `<p>${p}</p>`).join('');
     const topics = cfp.topics.map(t => `<li>${t}</li>`).join('');
+    // const features = `<h4>Features</h4><div class="feature-pills">${cfp.features.map(f => `<span class="pill">${f}</span>`).join('')};</div> return;
+    const features = `<h4>Features</h4><div class="feature-pills">${cfp.features.map(f => `<span class="pill">${f}</span>`).join('')}</div>`;
     return `
     <div class="page-wrap">
       <div class="page-hero"><div class="page-hero-inner">
@@ -425,6 +428,7 @@ const pages = {
           <h3>Call for Papers</h3>
           ${paras}
           <ul>${topics}</ul>
+          <div class="features">${features}</div>
           <h4>Submission Rules</h4>
           <p>Papers must be formatted in the <strong>standard IEEE two-column format</strong> that is used by the <strong>${conference.name} main conference</strong> and must not exceed <strong>${submission.maxPages} pages in length</strong> (including references). All submitted papers will go through a peer review process, and all accepted papers which are presented by one of the authors at the workshop will be published in the <strong>${conference.name} proceedings and IEEE Xplore</strong>.</p>
           <div class="submit-box"><a href="${submission.edas}" target="_blank">Submit via EDAS</a></div>
